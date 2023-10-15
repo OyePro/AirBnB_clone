@@ -12,24 +12,28 @@
 - [Installation](#Installation)
 - [Usage](#Usage)
 - [Built with](#Built-with)
-- [Acknowledgements](#Acknowledgements)
 
 ## Description 📃
+
 AirBnB Clone Project; The goal of the project is to deploy a simple copy of the AirBnB website on my server. It's one of the project done while learning Software Engineering at Alx School. This repository consists of one of the four projects that will be done to clone the AirBnB website. In this phase, a basic `console` was created using the Python module, Cmd, to manage the objects of the whole project through implementation of the methods `create`, `show`, `update`, `all`, and `destroy` to the existing classes and subclasses.
 
 ## Environment 💻
+
 The console was developed in Ubuntu 20.04LTS using python3 (version 3.8.5).
 
 ## Further Information 📑
+
 For further information on python version, and documentation visit [python.org](https://www.python.org/).
 
 ## Requirements 📝
+
 - Basic knowledge in python3 and usage of a command line interpreter.
 - A computer with Ubuntu 20.04LTS, may be Subsystem for Linux.
 - Code must follow the Python Coding Style, pycodestyle (2.8 version)
 - All modules, classes and function must have a documentation.
 
 ## Repository Contents 📋
+
 This repository contains the following files:
 
 |   **File**   |   **Description**   |
@@ -56,6 +60,7 @@ This repository contains the following files:
 
 
 ## Installation 🛠️
+
 Clone the repository and run the console.py
 ```
 $ git clone https://github.com/OyePro/AirBnB_clone.git
@@ -75,6 +80,7 @@ $ git clone https://github.com/OyePro/AirBnB_clone.git
 |[quit/ EOF](./console.py)| Exit the program
 
 ###### Console Execution
+
 ```
 OyePro@proboscis:~AirBnB_clone$ ./console.py
 (hbnb) help
@@ -139,7 +145,9 @@ OyePro@proboscis:~AirBnB_clone git$
 ```
 
 ## Built with ⚙️
+
 python3 (3.8.5)
 
 ### Authors 🖋️
+
 * Olalekan Okewale - @OyePro
