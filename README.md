@@ -122,7 +122,7 @@ bb4f4b81-7757-460b-9263-743c9ea6fef6
 ###### Testing 2
 
 ```
-OyePro@proboscis:~AirBnB_clone git$ ./console.py
+OyePro@proboscis:~AirBnB_clone$ ./console.py
 (hbnb) User.count
 *** Unknown syntax: User.count
 (hbnb) User.count()
@@ -140,7 +140,7 @@ OyePro@proboscis:~AirBnB_clone git$ ./console.py
 (hbnb) User.all()
 []
 (hbnb) quit
-OyePro@proboscis:~AirBnB_clone git$
+OyePro@proboscis:~AirBnB_clone$
 
 ```
 
