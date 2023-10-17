@@ -113,24 +113,76 @@ class HBNBCommand(cmd.Cmd):
         """
         response = arg.split(" ")
         savedInstance = storage.all()
-        if len(response) >= 4:
-            objId = f"{response[0]}.{response[1]}"
-            val = response[3]
-            val = val.strip('"')
-            setattr(savedInstance[objId], response[2], val)
-            savedInstance[objId].save()
-        elif arg == "":
+        if arg == "":
             print("** class name missing **")
-        elif response[0] not in HBNBCommand.listClass:
-            print("** class doesn't exist **")
-        elif (f"{response[0]}.{response[1]}") not in savedInstance.keys():
-            print("** no instance found **")
-        elif len(response) == 1:
-            print("** instance id missing **")
-        elif len(response) == 2:
-            print("** attribute name missing **")
+            return
         else:
-            print("** value missing **")
+            clname = response[0]
+            #ids = response[1]
+            #attr = response[2]
+            #val = response[3].strip('"')
+            #objId = f"{clname}.{ids}"
+            if len(response) == 1:
+                if clname not in HBNBCommand.listClass:
+                    print("** class doesn't exist **")
+                else:
+                    print("** instance id missing **")
+            elif len(response) == 2:
+                ids = response[1]
+                objId = f"{clname}.{ids}"
+                if clname not in HBNBCommand.listClass:
+                    print("** class doesn't exist **")
+                elif objId not in savedInstance.keys():
+                    print("** no instance found **")
+                else:
+                    print("** attribute name missing **")
+            elif len(response) == 3:
+                ids = response[1]
+                objId = f"{clname}.{ids}"
+                if clname not in HBNBCommand.listClass:
+                    print("** class doesn't exist **")
+                elif objId not in savedInstance.keys():
+                    print("** no instance found **")
+                else:
+                    print("** value missing **")
+            elif len(response) == 4:
+                ids = response[1]
+                attr = response[2]
+                val = response[3].strip('"')
+                objId = f"{clname}.{ids}"
+                if clname not in HBNBCommand.listClass:
+                    print("** class doesn't exist **")
+                elif objId not in savedInstance.keys():
+                    print("** no instance found **")
+                else:
+                    setattr(savedInstance[objId], attr, val)
+                    savedInstance[objId].save()
+        #except IndexError:
+            #print("** no instance found **")
+
+        '''
+        try:
+            if len(response) >= 4:
+                objId = f"{response[0]}.{response[1]}"
+                val = response[3]
+                val = val.strip('"')
+                setattr(savedInstance[objId], response[2], val)
+                savedInstance[objId].save()
+            elif arg == "":
+                print("** class name missing **")
+            elif response[0] not in HBNBCommand.listClass:
+                print("** class doesn't exist **")
+            elif (f"{response[0]}.{response[1]}") not in savedInstance.keys():
+                print("** no instance found **")
+            #elif len(response) == 1:
+                #print("** instance id missing **")
+            elif len(response) == 2:
+                print("** attribute name missing **")
+            else:
+                print("** value missing **")
+        except IndexError:
+            print("** instance id missing **")
+        '''
 
     def do_count(self, arg):
         """Command to count the number of instances of a class
