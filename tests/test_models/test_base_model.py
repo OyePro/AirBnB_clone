@@ -41,8 +41,13 @@ class TestBaseModel(unittest.TestCase):
         self.myModel.propert = "Project"
         self.myModel.save()
         self.assertNotEqual(self.myModel.created_at, self.myModel.updated_at)
+        self.assertEqual(self.myModel.name, "AirBnb")
+        self.assertEqual(self.myModel.propert, "Project")
 
     def test_to_dict(self):
+        self.myModel.name = "AirBnb"
+        self.myModel.propert = "Project"
+        self.myModel.save()
         to_json = self.myModel.to_dict()
         self.assertEqual(self.myModel.__class__.__name__, 'BaseModel')
         self.assertIsInstance(to_json['created_at'], str)

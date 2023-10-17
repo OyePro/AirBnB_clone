@@ -2,7 +2,6 @@
 """Creating a class Place which inherit BaseModel"""
 
 from models.base_model import BaseModel
-import json
 
 
 class Place(BaseModel):

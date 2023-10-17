@@ -12,15 +12,15 @@ class TestPlace(unittest.TestCase):
 
     myPlace = Place()
     myPlace.city_id = "Ibadan-001"
-    myPlace.user_id = "234-567-890"
+    myPlace.user_id = "jam-01"
     myPlace.name = "Ibadan"
     myPlace.description = "City of Brown Roof"
-    myPlace.number_rooms = 0
-    myPlace.number_bathrooms = 0
-    myPlace.max_guest = 0
-    myPlace.price_by_night = 0
-    myPlace.latitude = 0.0
-    myPlace.longitude = 0.0
+    myPlace.number_rooms = 72
+    myPlace.number_bathrooms = 40
+    myPlace.max_guest = 288
+    myPlace.price_by_night = 1500
+    myPlace.latitude = 78.5
+    myPlace.longitude = 87.6
     myPlace.amenity_ids = []
 
     def test_is_subclass(self):
@@ -58,9 +58,24 @@ class TestPlace(unittest.TestCase):
         self.assertEqual(type(self.myPlace.longitude), float)
         self.assertEqual(type(self.myPlace.amenity_ids), list)
 
+    def test_attr_val(self):
+        self.assertEqual(self.myPlace.city_id, "Ibadan-001")
+        self.assertEqual(self.myPlace.user_id, "jam-01")
+        self.assertEqual(self.myPlace.name, "Ibadan")
+        self.assertEqual(self.myPlace.description, "City of Brown Roof")
+        self.assertEqual(self.myPlace.number_rooms, 72)
+        self.assertEqual(self.myPlace.number_bathrooms, 40)
+        self.assertEqual(self.myPlace.max_guest, 288)
+        self.assertEqual(self.myPlace.price_by_night, 1500)
+        self.assertEqual(self.myPlace.longitude, 87.6)
+        self.assertEqual(self.myPlace.latitude, 78.5)
+        self.assertEqual(self.myPlace.amenity_ids, [])
+
     def test_save(self):
+        self.myPlace.age = 90
         self.myPlace.save()
         self.assertNotEqual(self.myPlace.created_at, self.myPlace.updated_at)
+        self.assertEqual(self.myPlace.age, 90)
 
     def test_to_dict(self):
         self.assertEqual('to_dict' in dir(self.myPlace), True)

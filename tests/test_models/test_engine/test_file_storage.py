@@ -4,6 +4,7 @@
 import unittest
 import json
 import os
+from models import storage
 from models.base_model import BaseModel
 from models.user import User
 from models.state import State
@@ -33,7 +34,7 @@ class TestFileStorage(unittest.TestCase):
     def teardown(self):
         try:
             os.remove("file.json")
-        except:
+        except FileNotFoundError:
             pass
 
     def test_all(self):
@@ -63,10 +64,12 @@ class TestFileStorage(unittest.TestCase):
         """
         Tests method: reload (reloads objects from string file)
         """
+        with self.assertRaises(TypeError):
+            storage.reload(None)
         a_storage = FileStorage()
         try:
             os.remove("file.json")
-        except:
+        except FileNotFoundError:
             pass
         with open("file.json", "w") as f:
             f.write("{}")
@@ -74,7 +77,21 @@ class TestFileStorage(unittest.TestCase):
             for line in r:
                 self.assertEqual(line, "{}")
         self.assertIs(a_storage.reload(), None)
+        storage.save()
+        storage.reload()
+        all_objs = storage.all()
+        for obj_id in all_objs.keys():
+            obj = all_objs[obj_id]
+            self.assertTrue(isinstance(obj, BaseModel))
+
+    def test_save(self):
+        newUser = User()
+        storage.save()
+        save = ""
+        with open("file.json") as f:
+            save = f.read()
+        self.assertIn(("User." + newUser.id), save)
 
 
 if __name__ == "__main__":
-        unittest.main()
+    unittest.main()

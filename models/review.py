@@ -2,7 +2,6 @@
 """Creating a class Review which inherit BaseModel"""
 
 from models.base_model import BaseModel
-import json
 
 
 class Review(BaseModel):

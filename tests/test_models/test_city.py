@@ -26,14 +26,18 @@ class TestCity(unittest.TestCase):
         self.assertTrue('updated_at' in self.myCity.__dict__)
         self.assertTrue('state_id' in self.myCity.__dict__)
         self.assertTrue('name' in self.myCity.__dict__)
+        self.assertTrue("Ibadan", self.myCity.name)
+        self.assertTrue("Ibadan-001", self.myCity.state_id)
 
     def test_attributes_are_strings(self):
         self.assertEqual(type(self.myCity.name), str)
         self.assertEqual(type(self.myCity.state_id), str)
 
     def test_save(self):
+        self.myCity.age = 90
         self.myCity.save()
         self.assertNotEqual(self.myCity.created_at, self.myCity.updated_at)
+        self.assertAlmostEqual(self.myCity.age, 90)
 
     def test_to_dict(self):
         self.assertEqual('to_dict' in dir(self.myCity), True)

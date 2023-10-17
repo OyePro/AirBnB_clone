@@ -27,6 +27,9 @@ class TestReview(unittest.TestCase):
         self.assertTrue('place_id' in self.rev.__dict__)
         self.assertTrue('text' in self.rev.__dict__)
         self.assertTrue('user_id' in self.rev.__dict__)
+        self.assertTrue("Ibadan-001", self.rev.place_id)
+        self.assertTrue("123-879-098", self.rev.user_id)
+        self.assertTrue("AirBnB", self.rev.text)
 
     def test_attributes_are_strings(self):
         self.assertEqual(type(self.rev.text), str)
@@ -34,8 +37,10 @@ class TestReview(unittest.TestCase):
         self.assertEqual(type(self.rev.user_id), str)
 
     def test_save(self):
+        self.rev.age = 90
         self.rev.save()
         self.assertNotEqual(self.rev.created_at, self.rev.updated_at)
+        self.assertTrue(90, self.rev.age)
 
     def test_to_dict(self):
         self.assertEqual('to_dict' in dir(self.rev), True)

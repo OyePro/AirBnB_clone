@@ -24,13 +24,18 @@ class TestState(unittest.TestCase):
         self.assertTrue('created_at' in self.state.__dict__)
         self.assertTrue('updated_at' in self.state.__dict__)
         self.assertTrue('name' in self.state.__dict__)
+        self.assertTrue("OYO", self.state.name)
 
     def test_attributes_are_strings(self):
         self.assertEqual(type(self.state.name), str)
 
     def test_save(self):
+        self.state.age = 90
+        self.state.height = 1.75
         self.state.save()
         self.assertNotEqual(self.state.created_at, self.state.updated_at)
+        self.assertAlmostEqual(90, self.state.age)
+        self.assertAlmostEqual(1.75, self.state.height)
 
     def test_to_dict(self):
         self.assertEqual('to_dict' in dir(self.state), True)

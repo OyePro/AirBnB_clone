@@ -118,10 +118,10 @@ class HBNBCommand(cmd.Cmd):
             return
         else:
             clname = response[0]
-            #ids = response[1]
-            #attr = response[2]
-            #val = response[3].strip('"')
-            #objId = f"{clname}.{ids}"
+            # ids = response[1]
+            # attr = response[2]
+            # val = response[3].strip('"')
+            # objId = f"{clname}.{ids}"
             if len(response) == 1:
                 if clname not in HBNBCommand.listClass:
                     print("** class doesn't exist **")
@@ -157,8 +157,8 @@ class HBNBCommand(cmd.Cmd):
                 else:
                     setattr(savedInstance[objId], attr, val)
                     savedInstance[objId].save()
-        #except IndexError:
-            #print("** no instance found **")
+        # except IndexError:
+            # print("** no instance found **")
 
         '''
         try:
