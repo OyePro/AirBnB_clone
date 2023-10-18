@@ -35,12 +35,19 @@ class TestReview(unittest.TestCase):
         self.assertEqual(type(self.rev.text), str)
         self.assertEqual(type(self.rev.place_id), str)
         self.assertEqual(type(self.rev.user_id), str)
+        self.assertNotEqual(type(self.rev.text), None)
+        self.assertNotEqual(type(self.rev.place_id), None)
+        self.assertNotEqual(type(self.rev.user_id), None)
 
     def test_save(self):
         self.rev.age = 90
         self.rev.save()
         self.assertNotEqual(self.rev.created_at, self.rev.updated_at)
         self.assertTrue(90, self.rev.age)
+        review = Review()
+        review.save()
+        with open("file.json") as f:
+            self.assertIn(("Review." + review.id), f.read())
 
     def test_to_dict(self):
         self.assertEqual('to_dict' in dir(self.rev), True)

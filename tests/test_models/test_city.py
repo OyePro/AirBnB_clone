@@ -32,12 +32,18 @@ class TestCity(unittest.TestCase):
     def test_attributes_are_strings(self):
         self.assertEqual(type(self.myCity.name), str)
         self.assertEqual(type(self.myCity.state_id), str)
+        self.assertNotEqual(type(self.myCity.name), None)
+        self.assertNotEqual(type(self.myCity.state_id), None)
 
     def test_save(self):
         self.myCity.age = 90
         self.myCity.save()
         self.assertNotEqual(self.myCity.created_at, self.myCity.updated_at)
         self.assertAlmostEqual(self.myCity.age, 90)
+        city = City()
+        city.save()
+        with open("file.json") as f:
+            self.assertIn(("City." + city.id), f.read())
 
     def test_to_dict(self):
         self.assertEqual('to_dict' in dir(self.myCity), True)

@@ -28,12 +28,17 @@ class TestAmenity(unittest.TestCase):
 
     def test_attributes_are_strings(self):
         self.assertEqual(type(self.amenity.name), str)
+        self.assertNotEqual(type(self.amenity.name), None)
 
     def test_save(self):
         self.amenity.age = 90
         self.amenity.save()
         self.assertNotEqual(self.amenity.created_at, self.amenity.updated_at)
         self.assertAlmostEqual(90, self.amenity.age)
+        amen = Amenity()
+        amen.save()
+        with open("file.json") as f:
+            self.assertIn(("Amenity." + amen.id), f.read())
 
     def test_to_dict(self):
         self.assertEqual('to_dict' in dir(self.amenity), True)

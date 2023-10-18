@@ -19,6 +19,7 @@ class TestFileStorage(unittest.TestCase):
     """Run with
     `python3 -m unittest -v tests/test_models/test_engine/test_file_storage.py`
     """
+    user = User()
 
     @classmethod
     def setUpClass(cls):
@@ -85,6 +86,8 @@ class TestFileStorage(unittest.TestCase):
             self.assertTrue(isinstance(obj, BaseModel))
 
     def test_save(self):
+        with self.assertRaises(TypeError):
+            storage.save(None)
         newUser = User()
         storage.save()
         save = ""

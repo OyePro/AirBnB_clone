@@ -51,6 +51,16 @@ class TestUser(unittest.TestCase):
         self.assertNotEqual(self.myUser.created_at, self.myUser.updated_at)
         self.assertEqual(self.myUser.age, 90)
         self.assertEqual(self.myUser.state, "Oyo")
+        user = User()
+        user.save()
+        with open("file.json") as f:
+            self.assertIn(("User." + user.id), f.read())
+
+    def test_attr_not_None(self):
+        self.assertNotEqual(type(self.myUser.email), None)
+        self.assertNotEqual(type(self.myUser.password), None)
+        self.assertNotEqual(type(self.myUser.first_name), None)
+        self.assertNotEqual(type(self.myUser.last_name), None)
 
     def test_to_dict(self):
         self.assertEqual('to_dict' in dir(self.myUser), True)

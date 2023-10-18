@@ -28,6 +28,7 @@ class TestState(unittest.TestCase):
 
     def test_attributes_are_strings(self):
         self.assertEqual(type(self.state.name), str)
+        self.assertNotEqual(type(self.state.name), None)
 
     def test_save(self):
         self.state.age = 90
@@ -36,6 +37,10 @@ class TestState(unittest.TestCase):
         self.assertNotEqual(self.state.created_at, self.state.updated_at)
         self.assertAlmostEqual(90, self.state.age)
         self.assertAlmostEqual(1.75, self.state.height)
+        stat = State()
+        stat.save()
+        with open("file.json") as f:
+            self.assertIn(("State." + stat.id), f.read())
 
     def test_to_dict(self):
         self.assertEqual('to_dict' in dir(self.state), True)

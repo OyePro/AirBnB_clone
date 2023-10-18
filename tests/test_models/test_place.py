@@ -71,11 +71,28 @@ class TestPlace(unittest.TestCase):
         self.assertEqual(self.myPlace.latitude, 78.5)
         self.assertEqual(self.myPlace.amenity_ids, [])
 
+    def test_attr_not_None(self):
+        self.assertNotEqual(type(self.myPlace.city_id), None)
+        self.assertNotEqual(type(self.myPlace.user_id), None)
+        self.assertNotEqual(type(self.myPlace.name), None)
+        self.assertNotEqual(type(self.myPlace.description), None)
+        self.assertNotEqual(type(self.myPlace.number_rooms), None)
+        self.assertNotEqual(type(self.myPlace.number_bathrooms), None)
+        self.assertNotEqual(type(self.myPlace.max_guest), None)
+        self.assertNotEqual(type(self.myPlace.price_by_night), None)
+        self.assertNotEqual(type(self.myPlace.longitude), None)
+        self.assertNotEqual(type(self.myPlace.latitude), None)
+        self.assertNotEqual(type(self.myPlace.amenity_ids), None)
+
     def test_save(self):
         self.myPlace.age = 90
         self.myPlace.save()
         self.assertNotEqual(self.myPlace.created_at, self.myPlace.updated_at)
         self.assertEqual(self.myPlace.age, 90)
+        place = Place()
+        place.save()
+        with open("file.json", "r") as f:
+            self.assertIn(("Place." + place.id), f.read())
 
     def test_to_dict(self):
         self.assertEqual('to_dict' in dir(self.myPlace), True)

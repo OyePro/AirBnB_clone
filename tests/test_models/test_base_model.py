@@ -43,6 +43,10 @@ class TestBaseModel(unittest.TestCase):
         self.assertNotEqual(self.myModel.created_at, self.myModel.updated_at)
         self.assertEqual(self.myModel.name, "AirBnb")
         self.assertEqual(self.myModel.propert, "Project")
+        newModel = BaseModel()
+        newModel.save()
+        with open("file.json") as f:
+            self.assertIn(("BaseModel." + newModel.id), f.read())
 
     def test_to_dict(self):
         self.myModel.name = "AirBnb"
